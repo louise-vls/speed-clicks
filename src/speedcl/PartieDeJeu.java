@@ -31,27 +31,37 @@ public class PartieDeJeu {
         
             
             while(!grid.cellulesToutesEteintes()){
-             grid.afficherGrille();
-            int ClickLigne = demanderClicK("cliquez sur la ligne correspondant au boutton allumee");  
+            afficherGrille();
+            int ClickLigne = demanderClick("cliquez sur la ligne correspondant au boutton allumee");  
             int ClickColonne = demanderClicK("cliquez sur la colonne correspondant au boutton allumee"); 
             
             
-               if (grid.getMatriceCellules()[ClickLigne][ClickColonne].estAllumee())){
-                nbCoups++;
-                 System.out.println("Bravo§ votre score pour le moment est de : "+nbCoups);
-                grid. activerLigneColonneOuDiagonaleAleatoire();
-            }else{ 
-                    
-                 nbCoups--;
-                grid. eteindreToutesLesCellules();
-                grid. activerLigneColonneOuDiagonaleAleatoire();
-                    }
+               if (grid.getMatriceCellules()[ClickLigne][ClickColonne].estAllumee()){ 
+                   nbCoups++;
+                   System.out.println("Bravo§ votre score pour le moment est de : "+nbCoups);
+                   grid. activerLigneColonneOuDiagonaleAleatoire();
+               } else { 
+                   
+                   nbCoups--;
+                   grid. eteindreToutesLesCellules();
+                   grid. activerLigneColonneOuDiagonaleAleatoire();
+               }
             }
            System.out.println("Bravo vous avez eteint toutes les celules en : "+ nbCoups+ " coups.");
         }
-int demanderClick(String message){
+private int demanderClick(String message){
     System.out.print(message);
-    Scanner scan= new Scanner (System.in);
+    Scanner scan = new Scanner (System.in);
+      return scan.nextInt();
+ }
+
+private void afficherGrille(){
+     System.out.println("Grille actuelle: ");
+     grid.afficherGrille();
 }
-        
+
+    private int demanderClicK(String cliquez_sur_la_colonne_correspondant_au_b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+}     
 
