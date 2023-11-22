@@ -3,18 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package speed.clicks;
-
+import speedcl.*;
 /**
  *
  * @author louis
  */
 public class SpeedClicks {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     
 }
+
