@@ -6,16 +6,22 @@ package speed.clicks;
  */
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 
@@ -29,6 +35,9 @@ public class JeuSpeedClick extends javax.swing.JFrame {
     int score;
     JButton[][] boutons;    
     Timer chrono;
+    JLabel scoreLab;
+    int countdown;
+    JLabel cdLab;
     /**
      * Creates new form JeuSpeedClick
      */
@@ -37,18 +46,36 @@ public class JeuSpeedClick extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600,600);
         
+         JPanel infoPanel = new JPanel (new BorderLayout());
+         setContentPane(infoPanel);
+        
+         scoreLab = new JLabel("Score: 0",SwingConstants.CENTER);
+         cdLab = new JLabel ("Countdown: 30", SwingConstants.CENTER);
+        cdLab.setFont(new Font("SanSerif", Font.PLAIN, 12));
+         
+        JPanel scoreEtCdPanel = new JPanel (new GridLayout(1,2));
+        scoreEtCdPanel.add(scoreLab);
+        scoreEtCdPanel.add(cdLab);
+        infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
+        
+       
         
         boutons= new JButton[5][5];
-        GridLayout layout = new GridLayout (5,5);
-        setLayout(layout);
+        JPanel PanelGrille = new JPanel (new GridLayout (5,5));
+        infoPanel.add(PanelGrille, BorderLayout.CENTER);
       
-        chrono= new Timer(1200, new ActionListener(){
+        chrono= new Timer(1000, new ActionListener(){
             @Override
              public void actionPerformed(ActionEvent e){
-               changerBoutonAllume();  
+               countdown--;
+               updateCountdownLabel();
+               if (countdown ==0){
+                stopGame();
+            JOptionPane.showMessageDialog(JeuSpeedClick.this, "The Game Is Over! : "+score);
+            startGame();
+               }
              }       
         });
-    
     
     
     
@@ -58,19 +85,30 @@ public class JeuSpeedClick extends javax.swing.JFrame {
            for (int j = 0; j< 5; j++) {
             boutons[i][j]= new JButton();
              boutons[i][j].setBackground(Color.BLUE);
-             boutons[i][j].addActionListener( new ButtonClickListener());
              
-             add(boutons[i][j]);
+             boutons[i][j].addActionListener( new ButtonClickListener());
+            
+             
+            PanelGrille.add(boutons[i][j]);
            }
         }
         
+       /* scoreLab = new JLabel ("Score: 0", SwingConstants.CENTER);
+        infoPanel.add(scoreLab, BorderLayout.NORTH);*/
+        
+        
+        
 startGame();
+
 
 setVisible(true);
     }
  
                
-       
+ 
+    private void updateCountdownLabel(){
+        cdLab.setText("Countdown: "+countdown);
+    }      
     
    
     
@@ -84,10 +122,12 @@ setVisible(true);
             score++;
             clicked.setBackground(Color.BLUE);
             changerBoutonAllume();
+            updateScoreLabel();
         }else{
-            score--;
+            
             stopGame();
             JOptionPane.showMessageDialog(JeuSpeedClick.this, "The Game Is Over! : "+score);
+            startGame();
         }
         }
         
@@ -103,10 +143,13 @@ setVisible(true);
            }
     }
         boutons[lAllumee][cAllumee].setBackground(Color.RED);
-        chrono.restart();
+        
     }
   private void startGame() {
       score =0;
+      countdown =30;
+      updateScoreLabel();
+      updateCountdownLabel();
       changerBoutonAllume();
       chrono.start();
     
@@ -118,7 +161,9 @@ setVisible(true);
     private void stopGame(){
         chrono.stop();
     }
-  
+  private void updateScoreLabel(){
+      scoreLab.setText("Score: "+score);
+  }
    
     
         /**
@@ -130,22 +175,50 @@ setVisible(true);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelGrille = new javax.swing.JPanel();
+        scoreLabel = new javax.swing.JPanel();
+        cdLabel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
-        jPanel1.setForeground(new java.awt.Color(255, 204, 204));
+        PanelGrille.setBackground(new java.awt.Color(255, 204, 204));
+        PanelGrille.setForeground(new java.awt.Color(255, 204, 204));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PanelGrilleLayout = new javax.swing.GroupLayout(PanelGrille);
+        PanelGrille.setLayout(PanelGrilleLayout);
+        PanelGrilleLayout.setHorizontalGroup(
+            PanelGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 213, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PanelGrilleLayout.setVerticalGroup(
+            PanelGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 240, Short.MAX_VALUE)
+        );
+
+        scoreLabel.setBackground(new java.awt.Color(255, 102, 102));
+
+        javax.swing.GroupLayout scoreLabelLayout = new javax.swing.GroupLayout(scoreLabel);
+        scoreLabel.setLayout(scoreLabelLayout);
+        scoreLabelLayout.setHorizontalGroup(
+            scoreLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        scoreLabelLayout.setVerticalGroup(
+            scoreLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+
+        cdLabel.setBackground(new java.awt.Color(255, 102, 102));
+
+        javax.swing.GroupLayout cdLabelLayout = new javax.swing.GroupLayout(cdLabel);
+        cdLabel.setLayout(cdLabelLayout);
+        cdLabelLayout.setHorizontalGroup(
+            cdLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 106, Short.MAX_VALUE)
+        );
+        cdLabelLayout.setVerticalGroup(
+            cdLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,16 +226,25 @@ setVisible(true);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PanelGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(scoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(PanelGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,6 +287,8 @@ setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel PanelGrille;
+    private javax.swing.JPanel cdLabel;
+    private javax.swing.JPanel scoreLabel;
     // End of variables declaration//GEN-END:variables
 }
