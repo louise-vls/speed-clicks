@@ -26,11 +26,11 @@ public class PartieDeJeu {
             
             System.out.println("Bienvenue dans le jeu Speed Click! ");
             Scanner scan= new Scanner (System.in);
-            /*grid.eteindreToutesLesCellules();
-            grid.melangerMatriceAleatoirement(10);*/
+            grid.eteindreToutesLesCellules();
+            grid.melangerMatriceAleatoirement(10);
         
             
-            while(!grid.cellulesToutesEteintes()){
+           while(!grid.cellulesToutesEteintes()){
             afficherGrille();
             int ClickLigne = demanderClick("cliquez sur la ligne correspondant au boutton allumee");  
             int ClickColonne = demanderClicK("cliquez sur la colonne correspondant au boutton allumee"); 
