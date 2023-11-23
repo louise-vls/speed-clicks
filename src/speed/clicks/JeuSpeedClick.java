@@ -8,21 +8,13 @@ package speed.clicks;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
 import java.util.Random;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
+import javax.swing.*;
+
 
 
 /**
@@ -38,13 +30,21 @@ public class JeuSpeedClick extends javax.swing.JFrame {
     JLabel scoreLab;
     int countdown;
     JLabel cdLab;
+    int record=0;
     /**
      * Creates new form JeuSpeedClick
      */
+    
+  
+    
     public JeuSpeedClick() {
+        
+        
         setTitle("Speed Click Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600,600);
+        
+        /*Icon etoile =new ImageIcon("resources/starwhite.png");*/
         
          JPanel infoPanel = new JPanel (new BorderLayout());
          setContentPane(infoPanel);
@@ -64,8 +64,7 @@ public class JeuSpeedClick extends javax.swing.JFrame {
         JPanel PanelGrille = new JPanel (new GridLayout (10,10));
         infoPanel.add(PanelGrille, BorderLayout.CENTER);
         
-        JPanel profilLabel = new JPanel ();
-        infoPanel.add(profilLabel, BorderLayout.SOUTH);
+        
       
         chrono= new Timer(1000, new ActionListener(){
             @Override
@@ -74,7 +73,7 @@ public class JeuSpeedClick extends javax.swing.JFrame {
                updateCountdownLabel();
                if (countdown ==0){
                 stopGame();
-            JOptionPane.showMessageDialog(JeuSpeedClick.this, "The Game Is Over! : "+score);
+           
             startGame();
                }
              }       
@@ -87,11 +86,17 @@ public class JeuSpeedClick extends javax.swing.JFrame {
         for (int i = 0; i< 10; i++){
            for (int j = 0; j< 10; j++) {
             boutons[i][j]= new JButton();
-             boutons[i][j].setBackground(Color.BLUE);
-             
+           /*if (i == 4 || j == 4 || i + j == 4 || i - j == 4) {
+             */boutons[i][j].setBackground(Color.BLUE);
+           /*}else{
+             boutons[i][j].setBackground(Color.WHITE);      
+           } */
+           
+           /*boutons[i][j].setContentAreaFilled(false);
+           boutons[i][j].setBorderPainted(false);*/
              boutons[i][j].addActionListener( new ButtonClickListener());
             
-             
+               
             PanelGrille.add(boutons[i][j]);
            }
         }
@@ -128,9 +133,9 @@ setVisible(true);
             updateScoreLabel();
         }else{
             
-            stopGame();
-            JOptionPane.showMessageDialog(JeuSpeedClick.this, "The Game Is Over! : "+score);
-            startGame();
+            score--;
+            updateScoreLabel();
+            
         }
         }
         
@@ -163,9 +168,16 @@ setVisible(true);
    
     private void stopGame(){
         chrono.stop();
+        if(score>record){
+            record=score;
+            JOptionPane.showMessageDialog(JeuSpeedClick.this, "New record! : "+score);
+        }else{
+            JOptionPane.showMessageDialog(JeuSpeedClick.this, "The Game Is Over! : "+score);
+        }
     }
   private void updateScoreLabel(){
       scoreLab.setText("Score: "+score);
+      
   }
    
     
@@ -186,6 +198,7 @@ setVisible(true);
         textField1 = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
@@ -245,7 +258,11 @@ setVisible(true);
                 jButton1ActionPerformed(evt);
             }
         });
-        profilLabel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        profilLabel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/back test.png"))); // NOI18N
+        jLabel5.setText("Login");
+        profilLabel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 210));
 
         getContentPane().add(profilLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 220, 210));
 
@@ -342,6 +359,7 @@ setVisible(true);
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPanel profilLabel;
