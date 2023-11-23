@@ -60,9 +60,12 @@ public class JeuSpeedClick extends javax.swing.JFrame {
         
        
         
-        boutons= new JButton[5][5];
-        JPanel PanelGrille = new JPanel (new GridLayout (5,5));
+        boutons= new JButton[10][10];
+        JPanel PanelGrille = new JPanel (new GridLayout (10,10));
         infoPanel.add(PanelGrille, BorderLayout.CENTER);
+        
+        JPanel profilLabel = new JPanel ();
+        infoPanel.add(profilLabel, BorderLayout.SOUTH);
       
         chrono= new Timer(1000, new ActionListener(){
             @Override
@@ -81,8 +84,8 @@ public class JeuSpeedClick extends javax.swing.JFrame {
     
    
         /*JPanel panel = new JPanel (new GridLayout(TailleGrille, TailleGrille));*/
-        for (int i = 0; i< 5; i++){
-           for (int j = 0; j< 5; j++) {
+        for (int i = 0; i< 10; i++){
+           for (int j = 0; j< 10; j++) {
             boutons[i][j]= new JButton();
              boutons[i][j].setBackground(Color.BLUE);
              
@@ -134,11 +137,11 @@ setVisible(true);
     }
     private void changerBoutonAllume(){
         Random rand = new Random();
-        int lAllumee = rand.nextInt(5);
-        int cAllumee = rand.nextInt(5);
+        int lAllumee = rand.nextInt(10);
+        int cAllumee = rand.nextInt(10);
         
-        for (int i = 0; i< 5; i++){
-           for (int j = 0; j< 5; j++) {
+        for (int i = 0; i< 10; i++){
+           for (int j = 0; j< 10; j++) {
                boutons [i][j].setBackground(Color.BLUE);
            }
     }
@@ -176,16 +179,23 @@ setVisible(true);
     private void initComponents() {
 
         PanelGrille = new javax.swing.JPanel();
-        cdLabel = new javax.swing.JPanel();
+        profilLabel = new javax.swing.JPanel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         textField1 = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 700));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelGrille.setBackground(new java.awt.Color(255, 204, 204));
         PanelGrille.setForeground(new java.awt.Color(255, 204, 204));
@@ -195,34 +205,36 @@ setVisible(true);
         PanelGrille.setLayout(PanelGrilleLayout);
         PanelGrilleLayout.setHorizontalGroup(
             PanelGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 390, Short.MAX_VALUE)
         );
         PanelGrilleLayout.setVerticalGroup(
             PanelGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
-        cdLabel.setBackground(new java.awt.Color(255, 102, 102));
-        cdLabel.setMaximumSize(new java.awt.Dimension(200, 200));
-        cdLabel.setMinimumSize(new java.awt.Dimension(200, 200));
-        cdLabel.setPreferredSize(new java.awt.Dimension(200, 200));
-        cdLabel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(PanelGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 390, 370));
+
+        profilLabel.setBackground(new java.awt.Color(255, 102, 102));
+        profilLabel.setMaximumSize(new java.awt.Dimension(200, 200));
+        profilLabel.setMinimumSize(new java.awt.Dimension(200, 200));
+        profilLabel.setPreferredSize(new java.awt.Dimension(200, 200));
+        profilLabel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPasswordField1.setText("jPasswordField1");
-        cdLabel.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        profilLabel.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         jLabel1.setText("Login");
-        cdLabel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        profilLabel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel2.setText("Password");
-        cdLabel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, -1));
+        profilLabel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, -1));
 
         textField1.setText("textField1");
-        cdLabel.add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 90, -1));
+        profilLabel.add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 90, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("INFO PROFIL");
-        cdLabel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 120, 30));
+        profilLabel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 120, 30));
 
         jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setFont(new java.awt.Font("Britannic Bold", 2, 12)); // NOI18N
@@ -233,27 +245,40 @@ setVisible(true);
                 jButton1ActionPerformed(evt);
             }
         });
-        cdLabel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        profilLabel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(PanelGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(cdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(983, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        getContentPane().add(profilLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 220, 210));
+
+        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCheckBox1.setText("Avance");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, -1));
+
+        jCheckBox3.setText("Affirme");
+        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, -1));
+
+        jCheckBox2.setText("Intermediaire");
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, -1));
+
+        jCheckBox4.setText("debutant");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 130, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("NIVEAU");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 120, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 220, 190));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -261,6 +286,14 @@ setVisible(true);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,12 +333,18 @@ setVisible(true);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelGrille;
-    private javax.swing.JPanel cdLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPanel profilLabel;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
