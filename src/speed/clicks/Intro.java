@@ -44,17 +44,18 @@ public class Intro extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(2000, 3000));
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Harlow Solid Italic", 0, 48)); // NOI18N
         jLabel1.setText("Wellcome to our game Speed-Click");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 678, 82));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 678, 82));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel2.setText("CHOOSE THE LEVEL");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,14 +63,14 @@ public class Intro extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 217, 294, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 294, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel3.setText("First step: What is your name?");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 181, 310, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 310, -1));
 
         Debutant.setText("Débutant");
-        jPanel1.add(Debutant, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 85, -1));
+        jPanel1.add(Debutant, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, 85, -1));
 
         jCheckBox2.setText("Confirmé");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -77,13 +78,13 @@ public class Intro extends javax.swing.JFrame {
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 400, 85, -1));
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 500, 85, -1));
 
         jCheckBox3.setText("Intermediaire");
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, 107, -1));
+        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, 107, -1));
 
         jCheckBox4.setText("Avancé");
-        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 430, 85, -1));
+        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 530, 85, -1));
 
         jButton1.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
         jButton1.setText("START");
@@ -92,12 +93,13 @@ public class Intro extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, 260, 55));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 670, 370, 90));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/Acceuil.jpeg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/IMG_2388.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
+        jLabel4.setMinimumSize(new java.awt.Dimension(800, 600));
         jLabel4.setPreferredSize(new java.awt.Dimension(800, 600));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1570, 700));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1560, 970));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 1560, 610));
 
