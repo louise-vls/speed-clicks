@@ -101,7 +101,7 @@ public class Intro extends javax.swing.JFrame {
         jLabel4.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1560, 970));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 1560, 610));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 1560, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,9 +115,10 @@ public class Intro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
+     
     /**
      * @param args the command line arguments
      */

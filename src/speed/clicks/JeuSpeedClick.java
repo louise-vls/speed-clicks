@@ -23,7 +23,7 @@ import javax.swing.*;
  */
 public class JeuSpeedClick extends javax.swing.JFrame {
    
-    
+   
     int score;
     JButton[][] boutons;    
     Timer chrono;
@@ -35,7 +35,7 @@ public class JeuSpeedClick extends javax.swing.JFrame {
      * Creates new form JeuSpeedClick
      */
     
-  
+  Icon etoile =new ImageIcon("\"C:\\Users\\louis\\OneDrive\\Bureau\\LOUSIE EPF\\algo\\algo\\Speed-Clicks\\src\\speed\\clicks\\resources\\back test.png\"");
     
     public JeuSpeedClick() {
         
@@ -87,7 +87,9 @@ public class JeuSpeedClick extends javax.swing.JFrame {
            for (int j = 0; j< 10; j++) {
             boutons[i][j]= new JButton();
            /*if (i == 4 || j == 4 || i + j == 4 || i - j == 4) {
-             */boutons[i][j].setBackground(Color.BLUE);
+            
+            */
+             boutons[i][j].setBackground(Color.BLUE);
            /*}else{
              boutons[i][j].setBackground(Color.WHITE);      
            } */
@@ -147,7 +149,8 @@ setVisible(true);
         
         for (int i = 0; i< 10; i++){
            for (int j = 0; j< 10; j++) {
-               boutons [i][j].setBackground(Color.BLUE);
+              /* boutons [i][j].setBackground(Color.BLUE);*/
+              boutons[i][j].setBackground(Color.BLUE);
            }
     }
         boutons[lAllumee][cAllumee].setBackground(Color.RED);
