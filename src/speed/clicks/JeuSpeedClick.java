@@ -60,9 +60,9 @@ public class JeuSpeedClick extends javax.swing.JFrame {
         
        
         
-        boutons= new JButton[10][10];
+        /*boutons= new JButton[10][10];
         JPanel PanelGrille = new JPanel (new GridLayout (10,10));
-        infoPanel.add(PanelGrille, BorderLayout.CENTER);
+        infoPanel.add(PanelGrille, BorderLayout.CENTER);*/
         
         
       
@@ -302,9 +302,36 @@ setVisible(true);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  
+    private void PanelGrilleActionPerformed(java.awt.event.ActionEvent evt) {                                           
+         JPanel infoPanel = new JPanel (new BorderLayout());
+         setContentPane(infoPanel);
+         boutons= new JButton[10][10];
+        JPanel PanelGrille = new JPanel (new GridLayout (10,10));
+        infoPanel.add(PanelGrille, BorderLayout.CENTER);
+/*JPanel panel = new JPanel (new GridLayout(TailleGrille, TailleGrille));*/
+        for (int i = 0; i< 10; i++){
+           for (int j = 0; j< 10; j++) {
+            boutons[i][j]= new JButton();
+           /*if (i == 4 || j == 4 || i + j == 4 || i - j == 4) {
+            
+            */
+             boutons[i][j].setBackground(Color.BLUE);
+           /*}else{
+             boutons[i][j].setBackground(Color.WHITE);      
+           } */
+           
+           /*boutons[i][j].setContentAreaFilled(false);
+           boutons[i][j].setBorderPainted(false);*/
+             boutons[i][j].addActionListener( new ButtonClickListener());
+            
+               
+            PanelGrille.add(boutons[i][j]);
+           }
+        }// TODO add your handling code here:
+    }  
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
