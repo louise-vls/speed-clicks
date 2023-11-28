@@ -62,9 +62,9 @@ public class SpeedClick extends javax.swing.JFrame {
         
        
         
-        /*boutons= new JButton[10][10];
+        boutons= new JButton[10][10];
         JPanel PanelGrille = new JPanel (new GridLayout (10,10));
-        infoPanel.add(PanelGrille, BorderLayout.CENTER);*/
+        infoPanel.add(PanelGrille, BorderLayout.CENTER);
         
         
       
