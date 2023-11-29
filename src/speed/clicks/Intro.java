@@ -9,15 +9,36 @@ package speed.clicks;
  *
  * @author louis
  */
-public class Intro extends javax.swing.JFrame {
 
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+
+public class Intro extends javax.swing.JFrame {
+ SpeedClick speedClickF;
+ reglesDeJeu rdjFrame;
     /**
      * Creates new form Intro
      */
     public Intro() {
         initComponents();
     }
-
+    
+    public boolean isDebutantSelected(){
+        return Debutant.isSelected();
+    }
+    public JCheckBox getIntermediaireCheckBox(){
+        return Intermediaire;
+    }
+    
+    public void setIntermediaireEnabled(boolean enabled){
+       Intermediaire.setEnabled(enabled);
+    }
+    public boolean isIntermediaireSelected(){
+        return Intermediaire.isSelected();
+    }
+    public boolean isConfirmeSelected(){
+        return Confirme.isSelected();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,13 +51,15 @@ public class Intro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        UserName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Debutant = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        Confirme = new javax.swing.JCheckBox();
+        Intermediaire = new javax.swing.JCheckBox();
+        Avance = new javax.swing.JCheckBox();
+        Start = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        rdj = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,13 +82,13 @@ public class Intro extends javax.swing.JFrame {
         jLabel2.setText("CHOOSE THE LEVEL");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        UserName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        UserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                UserNameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 240, -1));
+        jPanel1.add(UserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 240, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,33 +99,41 @@ public class Intro extends javax.swing.JFrame {
         Debutant.setText("Débutant");
         jPanel1.add(Debutant, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, 20));
 
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("Confirmé");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        Confirme.setForeground(new java.awt.Color(255, 255, 255));
+        Confirme.setText("Confirmé");
+        Confirme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                ConfirmeActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, 20));
+        jPanel1.add(Confirme, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, 20));
 
-        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setText("Intermediaire");
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, 20));
+        Intermediaire.setForeground(new java.awt.Color(255, 255, 255));
+        Intermediaire.setText("Intermediaire");
+        jPanel1.add(Intermediaire, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, 20));
 
-        jCheckBox4.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox4.setText("Avancé");
-        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, -1, 20));
+        Avance.setForeground(new java.awt.Color(255, 255, 255));
+        Avance.setText("Avancé");
+        jPanel1.add(Avance, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, -1, 20));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("START");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Start.setBackground(new java.awt.Color(0, 0, 0));
+        Start.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
+        Start.setForeground(new java.awt.Color(255, 255, 255));
+        Start.setText("START");
+        Start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                StartActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 140, -1));
+        jPanel1.add(Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 140, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("REGLES DU JEU !");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 120, -1));
+
+        rdj.setText("jButton1");
+        jPanel1.add(rdj, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/nouv.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -115,18 +146,34 @@ public class Intro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_UserNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-       
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
+    private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
+       speedClickF = new SpeedClick(this);
+       speedClickF.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_StartActionPerformed
+    private void DebutantActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       if (speedClickF != null){
+           speedClickF.setPanelGrilleTaille(5);
+       }
+    }                                        
+    private void IntermediaireActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       if (speedClickF != null){
+           speedClickF.setPanelGrilleTaille(10);
+       }
+    } 
+    private void ConfirmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmeActionPerformed
+       if (speedClickF != null){
+           speedClickF.setPanelGrilleTaille(10);
+       }
+    }//GEN-LAST:event_ConfirmeActionPerformed
+private void rdjActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        rdjFrame= new reglesDeJeu();
+        rdjFrame.setVisible(true);
+    }   
      
     /**
      * @param args the command line arguments
@@ -164,16 +211,20 @@ public class Intro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox Avance;
+    private javax.swing.JCheckBox Confirme;
     private javax.swing.JCheckBox Debutant;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox Intermediaire;
+    private javax.swing.JButton Start;
+    private javax.swing.JTextField UserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton rdj;
     // End of variables declaration//GEN-END:variables
+
+    
 }
