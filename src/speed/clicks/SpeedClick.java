@@ -12,8 +12,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.List;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
@@ -33,14 +35,18 @@ public class SpeedClick extends javax.swing.JFrame {
     int countdown;
     JLabel cdLab;
     int record=0;
+    int tailleGrille =0;
+    Intro iInstance;
+    
+    List<Integer> boutonsAllumes;
     /**
      * Creates new form JeuSpeedClick
      */
-    
+    private static final int CONFIRME_NB_BOUTONS = 4;
   /*Icon etoile =new ImageIcon("\"C:\\Users\\louis\\OneDrive\\Bureau\\LOUSIE EPF\\algo\\algo\\Speed-Clicks\\src\\speed\\clicks\\resources\\back test.png\"");*/
     
-    public SpeedClick() {
-        
+    public SpeedClick(Intro iInstance) {
+        this.iInstance = iInstance;
         
         setTitle("Speed Click Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +55,7 @@ public class SpeedClick extends javax.swing.JFrame {
         /*Icon etoile =new ImageIcon("resources/starwhite.png");*/
         
          JPanel infoPanel = new JPanel (new BorderLayout());
-         setContentPane(infoPanel);
+         setContentPane(infoPanel); 
         
          scoreLab = new JLabel("Score: 0",SwingConstants.CENTER);
          cdLab = new JLabel ("Countdown: 30", SwingConstants.CENTER);
@@ -61,9 +67,7 @@ public class SpeedClick extends javax.swing.JFrame {
         infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
         
        
-        
-        boutons= new JButton[10][10];
-        JPanel PanelGrille = new JPanel (new GridLayout (10,10));
+        PanelGrille = new JPanel();
         infoPanel.add(PanelGrille, BorderLayout.CENTER);
         
         
@@ -83,39 +87,32 @@ public class SpeedClick extends javax.swing.JFrame {
     
     
     
-   
-        /*JPanel panel = new JPanel (new GridLayout(TailleGrille, TailleGrille));*/
-        for (int i = 0; i< 10; i++){
-           for (int j = 0; j< 10; j++) {
-            boutons[i][j]= new JButton();
-           /*if (i == 4 || j == 4 || i + j == 4 || i - j == 4) {
-            
-            */
-             boutons[i][j].setBackground(Color.BLUE);
-           /*}else{
-             boutons[i][j].setBackground(Color.WHITE);      
-           } */
-           
-           /*boutons[i][j].setContentAreaFilled(false);
-           boutons[i][j].setBorderPainted(false);*/
-             boutons[i][j].addActionListener( new ButtonClickListener());
-            
                
-            PanelGrille.add(boutons[i][j]);
-           }
-        }
-        
-       /* scoreLab = new JLabel ("Score: 0", SwingConstants.CENTER);
-        infoPanel.add(scoreLab, BorderLayout.NORTH);*/
-        
-        
-        
 startGame();
 
 
 setVisible(true);
     }
- 
+  public void setPanelGrilleTaille(int taille){
+         boutons= new JButton[taille][taille];
+         PanelGrille.removeAll();
+        JPanel panelGrille = new JPanel (new GridLayout (taille,taille));
+        
+        /*JPanel panel = new JPanel (new GridLayout(TailleGrille, TailleGrille));*/
+        for (int i = 0; i< taille; i++){
+           for (int j = 0; j< taille; j++) {
+            boutons[i][j]= new JButton();
+            boutons[i][j].setBackground(Color.BLUE);
+            boutons[i][j].addActionListener( new ButtonClickListener());  
+            panelGrille.add(boutons[i][j]);
+           }
+        }
+        PanelGrille.setLayout(new BorderLayout());
+        PanelGrille.add(panelGrille, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+        boutonsAllumes = new ArrayList<>();
+        }  
                
  
     private void updateCountdownLabel(){
@@ -130,11 +127,18 @@ setVisible(true);
         @Override
                 public void actionPerformed (ActionEvent e){
         JButton clicked = (JButton) e.getSource();
-        if (clicked.getBackground() == Color.RED){
+        if (isButtonClicked(clicked)){
             score++;
             clicked.setBackground(Color.BLUE);
-            changerBoutonAllume();
             updateScoreLabel();
+            if (iInstance.isConfirmeSelected()){
+                if (areAllButtonsClicked()){
+                   changerBoutonAllume(); 
+                }
+            
+        }else{
+            changerBoutonAllume();
+            }
         }else{
             
             score--;
@@ -142,27 +146,63 @@ setVisible(true);
             
         }
         }
-        
+       private boolean isButtonClicked(JButton button){
+           return button.getBackground().equals(Color.RED);
     }
+       private boolean areAllButtonsClicked(){
+           for (int i = 0; i < boutons.length; i++){
+           for (int j = 0; j < boutons[0].length; j++){
+              if(boutons[i][j].getBackground().equals(Color.RED)){
+                  return false;
+              }
+           } 
+           }
+           return true;
+           }
+       }
     private void changerBoutonAllume(){
         Random rand = new Random();
-        int lAllumee = rand.nextInt(10);
-        int cAllumee = rand.nextInt(10);
-        
-        for (int i = 0; i< 10; i++){
-           for (int j = 0; j< 10; j++) {
-              /* boutons [i][j].setBackground(Color.BLUE);*/
-              boutons[i][j].setBackground(Color.BLUE);
-           }
-    }
+        for (int i = 0; i < boutons.length; i++){
+           for (int j = 0; j < boutons[0].length; j++){
+               boutons[i][j].setBackground(Color.BLUE);
+           } 
+        }
+        if (iInstance != null){
+           if (iInstance.isConfirmeSelected()){
+              for (int count = 0; count < CONFIRME_NB_BOUTONS; count ++){ 
+           
+                 int lAllumee = rand.nextInt(boutons.length);
+                 int cAllumee = rand.nextInt(boutons[0].length);
+              
         boutons[lAllumee][cAllumee].setBackground(Color.RED);
+        }
         
+        
+           }else{
+           int lAllumee = rand.nextInt(boutons.length);
+                 int cAllumee = rand.nextInt(boutons[0].length);
+              
+        boutons[lAllumee][cAllumee].setBackground(Color.RED);
+        }  
+        }
     }
   private void startGame() {
       score =0;
       countdown =30;
       updateScoreLabel();
       updateCountdownLabel();
+      
+              
+      if (iInstance != null){ 
+              if(iInstance.isDebutantSelected()){
+                tailleGrille =5;
+                iInstance.setIntermediaireEnabled(false);
+              }else if (iInstance.isIntermediaireSelected() || iInstance.isConfirmeSelected()){
+          tailleGrille=10;
+          iInstance.setIntermediaireEnabled(true);
+              } 
+  }
+      setPanelGrilleTaille(tailleGrille);
       changerBoutonAllume();
       chrono.start();
     
@@ -255,11 +295,23 @@ setVisible(true);
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SpeedClick().setVisible(true);
+        try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
+        }
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(SpeedClick.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(() -> {
+        Intro intro = new Intro();  // Créez une instance de Intro
+        new SpeedClick(intro).setVisible(true);
+    
         });
     }
 
