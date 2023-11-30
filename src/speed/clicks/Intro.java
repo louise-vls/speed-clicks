@@ -10,18 +10,26 @@ package speed.clicks;
  * @author louis
  */
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class Intro extends javax.swing.JFrame {
  SpeedClick speedClickF;
  reglesDeJeu rdjFrame;
+ 
     /**
      * Creates new form Intro
      */
     public Intro() {
         initComponents();
     }
+    
+    
+    
     
     public boolean isDebutantSelected(){
         return Debutant.isSelected();
@@ -38,6 +46,9 @@ public class Intro extends javax.swing.JFrame {
     }
     public boolean isConfirmeSelected(){
         return Confirme.isSelected();
+    }
+     public boolean isAvanceSelected(){
+        return Avance.isSelected();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +70,7 @@ public class Intro extends javax.swing.JFrame {
         Avance = new javax.swing.JCheckBox();
         Start = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        rdj = new javax.swing.JButton();
+        rdjButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,7 +85,7 @@ public class Intro extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Harlow Solid Italic", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Wellcome to our game Speed-Click");
+        jLabel1.setText("Welcome to our game Speed-Click");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 690, -1));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
@@ -132,8 +143,13 @@ public class Intro extends javax.swing.JFrame {
         jLabel5.setText("REGLES DU JEU !");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 120, -1));
 
-        rdj.setText("jButton1");
-        jPanel1.add(rdj, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, -1, -1));
+        rdjButton.setText("jButton1");
+        rdjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdjButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 503, -1, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/nouv.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -170,11 +186,20 @@ public class Intro extends javax.swing.JFrame {
            speedClickF.setPanelGrilleTaille(10);
        }
     }//GEN-LAST:event_ConfirmeActionPerformed
-private void rdjActionPerformed(java.awt.event.ActionEvent evt) {                                         
+
+    private void AvanceActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       if (speedClickF != null){
+           speedClickF.setPanelGrilleTaille(10);
+       }
+    }     
+    private void rdjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdjButtonActionPerformed
         rdjFrame= new reglesDeJeu();
         rdjFrame.setVisible(true);
-    }   
-     
+    }//GEN-LAST:event_rdjButtonActionPerformed
+    
+    
+    
+
     /**
      * @param args the command line arguments
      */
@@ -223,7 +248,7 @@ private void rdjActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton rdj;
+    private javax.swing.JButton rdjButton;
     // End of variables declaration//GEN-END:variables
 
     
