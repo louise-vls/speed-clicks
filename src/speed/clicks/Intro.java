@@ -91,7 +91,7 @@ public class Intro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CHOOSE THE LEVEL");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
 
         UserName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         UserName.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class Intro extends javax.swing.JFrame {
 
         Debutant.setForeground(new java.awt.Color(255, 255, 255));
         Debutant.setText("Débutant");
-        jPanel1.add(Debutant, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, 20));
+        jPanel1.add(Debutant, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, 20));
 
         Confirme.setForeground(new java.awt.Color(255, 255, 255));
         Confirme.setText("Confirmé");
@@ -117,15 +117,15 @@ public class Intro extends javax.swing.JFrame {
                 ConfirmeActionPerformed(evt);
             }
         });
-        jPanel1.add(Confirme, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, 20));
+        jPanel1.add(Confirme, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, 20));
 
         Intermediaire.setForeground(new java.awt.Color(255, 255, 255));
         Intermediaire.setText("Intermediaire");
-        jPanel1.add(Intermediaire, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, 20));
+        jPanel1.add(Intermediaire, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, 20));
 
         Avance.setForeground(new java.awt.Color(255, 255, 255));
         Avance.setText("Avancé");
-        jPanel1.add(Avance, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, -1, 20));
+        jPanel1.add(Avance, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, 20));
 
         Start.setBackground(new java.awt.Color(0, 0, 0));
         Start.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
@@ -136,22 +136,22 @@ public class Intro extends javax.swing.JFrame {
                 StartActionPerformed(evt);
             }
         });
-        jPanel1.add(Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 140, -1));
+        jPanel1.add(Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 445, 140, 50));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("REGLES DU JEU !");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 120, -1));
+        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, 200, 40));
 
-        rdjButton.setText("jButton1");
         rdjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdjButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 503, -1, 30));
+        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 490, -1, 30));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/nouv.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/Menu.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         jLabel4.setMinimumSize(new java.awt.Dimension(800, 600));
         jLabel4.setPreferredSize(new java.awt.Dimension(800, 600));
