@@ -149,7 +149,7 @@ public class Intro extends javax.swing.JFrame {
                 rdjButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 490, -1, 30));
+        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 90, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/Menu.png"))); // NOI18N
         jLabel4.setText("jLabel4");
