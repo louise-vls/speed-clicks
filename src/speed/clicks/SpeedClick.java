@@ -15,6 +15,8 @@ import java.awt.GridLayout;
 import java.util.List;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -38,6 +40,8 @@ public class SpeedClick extends javax.swing.JFrame {
     int tailleGrille =0;
     private static final int CONFIRME_NUM_BUTTONS = 4;
     Intro iInstance;
+    
+    
     List<Integer> boutonsAllumes;
     
 
@@ -53,7 +57,7 @@ public class SpeedClick extends javax.swing.JFrame {
         
         setTitle("Speed Click Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600,600);
+        setSize(800,600);
         
         /*Icon etoile =new ImageIcon("resources/starwhite.png");*/
         
@@ -256,12 +260,34 @@ setVisible(true);
 }
     private void stopGame(){
         chrono.stop();
-        if(score>record){
-            record=score;
-            JOptionPane.showMessageDialog(SpeedClick.this, "New record! : "+score);
+        JFrame resultatFrame;
+        String resultatMes;
+        
+        
+       if (score>=30){
+           resultatFrame = new victoire();
+           resultatMes="Bravo! tu as gagné avec un score de "+score;
+           
         }else{
-            JOptionPane.showMessageDialog(SpeedClick.this, "The Game Is Over! : "+score);
+            resultatFrame = new defaite();
+            resultatMes="Bravo! tu as gagné avec un score de "+score;
         }
+        
+        /*if(score>record){
+            record=score;
+            JOptionPane.showMessageDialog(SpeedClick.this, "New record! : " + score);
+        }else{
+            JOptionPane.showMessageDialog(SpeedClick.this, "The Game Is Over! : " + score);
+        }*/
+       JOptionPane.showMessageDialog(SpeedClick.this, resultatMes); 
+       resultatFrame.setVisible(true);
+    resultatFrame.addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosed(WindowEvent e) {
+            // This code is executed when the resultFrame is closed
+            startGame();
+        }
+    });
     }
 
 private void updateScoreLabel(){
