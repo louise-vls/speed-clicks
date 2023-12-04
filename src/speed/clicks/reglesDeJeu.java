@@ -34,7 +34,6 @@ Intro home;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -61,7 +60,7 @@ Intro home;
         jLabel2.setText("Speed-Click");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 100, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/rdj.JPG"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/rd.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         jLabel4.setMaximumSize(new java.awt.Dimension(800, 600));
         jLabel4.setMinimumSize(new java.awt.Dimension(800, 600));
