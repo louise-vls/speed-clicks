@@ -26,14 +26,19 @@ public class Intro extends javax.swing.JFrame {
      */
     public Intro() {
         initComponents();
+        Start.setEnabled(false);
     }
     
     
-    
+    private void startButtonEnabled(){
+        boolean checkboxSelected = Debutant.isSelected() || Intermediaire.isSelected() || Confirme.isSelected() || Avance.isSelected();
+        Start.setEnabled(checkboxSelected);
+    }
     
     public boolean isDebutantSelected(){
         return Debutant.isSelected();
     }
+    
     public JCheckBox getIntermediaireCheckBox(){
         return Intermediaire;
     }
@@ -175,22 +180,26 @@ public class Intro extends javax.swing.JFrame {
        if (speedClickF != null){
            speedClickF.setPanelGrilleTaille(5);
        }
+       startButtonEnabled();
     }                                        
     private void IntermediaireActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if (speedClickF != null){
            speedClickF.setPanelGrilleTaille(10);
        }
+       startButtonEnabled();
     } 
     private void ConfirmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmeActionPerformed
        if (speedClickF != null){
            speedClickF.setPanelGrilleTaille(10);
        }
+       startButtonEnabled();
     }//GEN-LAST:event_ConfirmeActionPerformed
 
     private void AvanceActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if (speedClickF != null){
            speedClickF.setPanelGrilleTaille(10);
        }
+       startButtonEnabled();
     }     
     private void rdjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdjButtonActionPerformed
         rdjFrame= new reglesDeJeu();
