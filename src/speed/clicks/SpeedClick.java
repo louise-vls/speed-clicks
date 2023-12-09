@@ -11,14 +11,18 @@ package speed.clicks;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.List;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -31,7 +35,7 @@ public class SpeedClick extends javax.swing.JFrame {
    
    
     int score;
-    JButton[][] boutons;    
+    celluleLumineuseGraphique[][] boutons;    
     Timer chrono;
     JLabel scoreLab;
     int countdown;
@@ -40,7 +44,7 @@ public class SpeedClick extends javax.swing.JFrame {
     int tailleGrille =0;
     private static final int CONFIRME_NUM_BUTTONS = 4;
     Intro iInstance;
-    
+    Intro intro;
     
     List<Integer> boutonsAllumes;
     
@@ -59,19 +63,29 @@ public class SpeedClick extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,600);
         
-        /*Icon etoile =new ImageIcon("resources/starwhite.png");*/
         
-         JPanel infoPanel = new JPanel (new BorderLayout());
-         setContentPane(infoPanel); 
         
-         scoreLab = new JLabel("Score: 0",SwingConstants.CENTER);
-         cdLab = new JLabel ("Countdown: 30", SwingConstants.CENTER);
-        cdLab.setFont(new Font("SanSerif", Font.PLAIN, 12));
-         
-        JPanel scoreEtCdPanel = new JPanel (new GridLayout(1,2));
-        scoreEtCdPanel.add(scoreLab);
-        scoreEtCdPanel.add(cdLab);
-        infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
+       JPanel infoPanel = new JPanel (new BorderLayout());
+       setContentPane(infoPanel);   
+        
+        JPanel scoreEtCdPanel = new JPanel(new GridBagLayout());
+GridBagConstraints gbc = new GridBagConstraints();
+gbc.anchor = GridBagConstraints.NORTHWEST; // Alignement en haut à gauche
+// Alignement en haut à gauche
+
+scoreLab = new JLabel("Score: 0");
+scoreLab.setFont(new Font("Franklin Gothic Demi", Font.PLAIN, 24));
+gbc.gridx = 0; // Colonne 0
+gbc.gridy = 0; // Ligne 0
+scoreEtCdPanel.add(scoreLab, gbc);
+
+cdLab = new JLabel("Countdown: 30");
+cdLab.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 24));
+gbc.gridx = 0; // Colonne 0
+gbc.gridy = 2; // Ligne 1
+scoreEtCdPanel.add(cdLab, gbc);
+
+infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
         
        
         PanelGrille = new JPanel();
@@ -87,7 +101,7 @@ public class SpeedClick extends javax.swing.JFrame {
                if (countdown ==0){
                 stopGame();
            
-            startGame();
+         //   startGame();
                }
              }       
         });
@@ -99,15 +113,17 @@ startGame();
 setVisible(true);
     }
   public void setPanelGrilleTaille(int taille){
-          boutons = new JButton[taille][taille];
+          boutons = new celluleLumineuseGraphique[taille][taille];
         PanelGrille.removeAll();
         JPanel panelGrille = new JPanel(new GridLayout(taille, taille));
 
         for (int i = 0; i < taille; i++) {
             for (int j = 0; j < taille; j++) {
-                boutons[i][j] = new JButton();
-                boutons[i][j].setBackground(Color.BLUE);
+               
+                boutons[i][j] = new celluleLumineuseGraphique(intro);
+                boutons[i][j].statut=false;
                 boutons[i][j].addActionListener(new ButtonClickListener());
+                 boutons[i][j].repaint(); 
                 panelGrille.add(boutons[i][j]);
             }
         }
@@ -123,16 +139,18 @@ setVisible(true);
     private class ButtonClickListener implements ActionListener {
        @Override
     public void actionPerformed(ActionEvent e) {
-        JButton clicked = (JButton) e.getSource();
+        celluleLumineuseGraphique clicked = (celluleLumineuseGraphique) e.getSource();
 
         if (isButtonClicked(clicked)) {
             score++;
-            clicked.setBackground(Color.BLUE);
+            
+            clicked.statut=false;
             updateScoreLabel();
 
             if (iInstance.isConfirmeSelected()) {
                 if (areAllButtonsClicked()) {
                     changerBoutonAllume();
+                
                 }
             } else {
                 changerBoutonAllume();
@@ -143,7 +161,7 @@ setVisible(true);
         }
     }
 
-    private boolean isButtonClicked(JButton button) {
+    private boolean isButtonClicked(celluleLumineuseGraphique button) {
         int position = -1;
     for (int i = 0; i < boutons.length; i++) {
         for (int j = 0; j < boutons[0].length; j++) {
@@ -158,7 +176,7 @@ setVisible(true);
     private boolean areAllButtonsClicked() {
         for (int i = 0; i < boutons.length; i++) {
             for (int j = 0; j < boutons[0].length; j++) {
-                if (boutons[i][j].getBackground().equals(Color.RED)) {
+                if (boutons[i][j].statut ) {
                     return false;
                 }
             }
@@ -171,49 +189,58 @@ setVisible(true);
       
    
     
-    private void changerBoutonAllume(){
-      Random rand = new Random();
-
+    private void changerBoutonAllume() {
     // First, turn off all buttons
     for (int i = 0; i < boutons.length; i++) {
         for (int j = 0; j < boutons[0].length; j++) {
-            boutons[i][j].setBackground(Color.BLUE);
+            boutons[i][j].statut = false;
         }
     }
+    allumerNouveauxBoutons();
+    repaint();
+    revalidate();
+}
+
+private void allumerNouveauxBoutons() {
+    Random rand = new Random();
 
     if (iInstance != null && iInstance.isConfirmeSelected()) {
         // For "Confirme," turn on multiple buttons
         for (int count = 0; count < CONFIRME_NUM_BUTTONS; count++) {
             int lAllumee = rand.nextInt(boutons.length);
             int cAllumee = rand.nextInt(boutons[0].length);
-            boutons[lAllumee][cAllumee].setBackground(Color.RED);
+            boutons[lAllumee][cAllumee].statut = true;
             boutonsAllumes.add(lAllumee * boutons.length + cAllumee); // Store the button position
         }
-    }else if (iInstance.isAvanceSelected()){
-            int lAllumee = rand.nextInt(boutons.length);
-            int cAllumee = rand.nextInt(boutons[0].length);
-            boutons[lAllumee][cAllumee].setBackground(Color.RED);
-            Timer time= new Timer (800, new ActionListener() {
-                @Override
-                    public void actionPerformed(ActionEvent e) {
-                     
-                     boutons[lAllumee][cAllumee].setBackground(Color.BLUE); 
-                     changerBoutonAllume();
-                    }
-                    
-            });
-            time.setRepeats(false);
-            time.start();
+    } else if (iInstance.isAvanceSelected()) {
+        // For "Avance," turn on only one button with a timer
+        int lAllumee = rand.nextInt(boutons.length);
+        int cAllumee = rand.nextInt(boutons[0].length);
+        boutons[lAllumee][cAllumee].statut = true;
+        Timer time = new Timer(800, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boutons[lAllumee][cAllumee].statut = false;
+                changerBoutonAllume();
+            }
+        });
+        time.setRepeats(false);
+        time.start();
     } else {
         // For other levels, turn on only one button
         int lAllumee = rand.nextInt(boutons.length);
         int cAllumee = rand.nextInt(boutons[0].length);
-        boutons[lAllumee][cAllumee].setBackground(Color.RED);
+        boutons[lAllumee][cAllumee].statut = true;
         boutonsAllumes.add(lAllumee * boutons.length + cAllumee);
     }
 }
   private void updateCountdownLabel() {
         cdLab.setText("Countdown: " + countdown);
+        if (countdown <= 5){
+            cdLab.setForeground(Color.RED);
+        }else{
+            cdLab.setForeground(Color.BLACK);
+        }
     }
 
   private void startGame() {
@@ -254,7 +281,7 @@ setVisible(true);
     for (int count = 0; count < numButtonsToLight; count++) {
         int lAllumee = rand.nextInt(boutons.length);
         int cAllumee = rand.nextInt(boutons[0].length);
-        boutons[lAllumee][cAllumee].setBackground(Color.RED);
+        boutons[lAllumee][cAllumee].statut = true;
         boutonsAllumes.add(lAllumee * boutons.length + cAllumee);
     }
 }
@@ -263,31 +290,34 @@ setVisible(true);
         JFrame resultatFrame;
         String resultatMes;
         
-        
+        if(score>record){
+            record=score;
+            JOptionPane.showMessageDialog(SpeedClick.this, "New record! : " + score);
+        }
        if (score>=30){
-           resultatFrame = new victoire();
+           resultatFrame = new victoire(SpeedClick.this);
            resultatMes="Bravo! tu as gagné avec un score de "+score;
            
         }else{
-            resultatFrame = new defaite();
-            resultatMes="Bravo! tu as gagné avec un score de "+score;
+            resultatFrame = new defaite(SpeedClick.this);
+            resultatMes="Dommage! tu as perdu avec un score de "+score;
+            this.dispose();
         }
+       
         
-        /*if(score>record){
-            record=score;
-            JOptionPane.showMessageDialog(SpeedClick.this, "New record! : " + score);
-        }else{
+        
+        /*}else{
             JOptionPane.showMessageDialog(SpeedClick.this, "The Game Is Over! : " + score);
         }*/
        JOptionPane.showMessageDialog(SpeedClick.this, resultatMes); 
        resultatFrame.setVisible(true);
-    resultatFrame.addWindowListener(new WindowAdapter() {
+    /*resultatFrame.addWindowListener(new WindowAdapter() {
         @Override
         public void windowClosed(WindowEvent e) {
             // This code is executed when the resultFrame is closed
             startGame();
         }
-    });
+    });*/
     }
 
 private void updateScoreLabel(){
@@ -308,6 +338,7 @@ private void updateScoreLabel(){
 
         PanelGrille = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -341,6 +372,9 @@ private void updateScoreLabel(){
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 130, 240));
+
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -394,6 +428,7 @@ private void updateScoreLabel(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelGrille;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

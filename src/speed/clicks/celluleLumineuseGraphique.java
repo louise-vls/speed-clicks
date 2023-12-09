@@ -1,0 +1,61 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package speed.clicks;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+/**
+ *
+ * @author louis
+ */
+public class celluleLumineuseGraphique extends JButton {
+
+    boolean statut = false;
+    Intro iInstance;
+
+    public celluleLumineuseGraphique(Intro iInstance) {
+        super();
+        this.iInstance = iInstance;
+       
+           
+        try {
+            
+            // Vérifier les conditions et charger les images spécifiques
+           /* if (iInstance != null && iInstance.isNoelSelected()) {*/
+                img = ImageIO.read(getClass().getResource("/speed/clicks/backgroundNoel.png"));
+                image = ImageIO.read(getClass().getResource("/speed/clicks/gifts.png"));
+            /*} else if (iInstance != null && iInstance.isPirateSelected()) {
+                img = ImageIO.read(getClass().getResource("/speed/clicks/mer.jpg"));
+                image = ImageIO.read(getClass().getResource("/speed/clicks/pirate.jpg"));
+            }*/
+        } catch (IOException ex) {
+            Logger.getLogger(celluleLumineuseGraphique.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    BufferedImage img = null;
+    BufferedImage image = null;
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+
+        if (statut == false) {
+           g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);            
+        }
+        else {
+            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+        }
+    }
+
+}
