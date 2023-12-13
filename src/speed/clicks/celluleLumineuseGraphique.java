@@ -23,21 +23,24 @@ public class celluleLumineuseGraphique extends JButton {
     boolean statut = false;
     Intro iInstance;
 
-    public celluleLumineuseGraphique(Intro iInstance) {
+    public celluleLumineuseGraphique() {
         super();
-        this.iInstance = iInstance;
-       
+      
+      
            
         try {
             
             // Vérifier les conditions et charger les images spécifiques
-           /* if (iInstance != null && iInstance.isNoelSelected()) {*/
+            if ("noel".equals(Intro.theme)) {
                 img = ImageIO.read(getClass().getResource("/speed/clicks/backgroundNoel.png"));
                 image = ImageIO.read(getClass().getResource("/speed/clicks/gifts.png"));
-            /*} else if (iInstance != null && iInstance.isPirateSelected()) {
+            } else if ("pirate".equals(Intro.theme)) {
                 img = ImageIO.read(getClass().getResource("/speed/clicks/mer.jpg"));
                 image = ImageIO.read(getClass().getResource("/speed/clicks/pirate.jpg"));
-            }*/
+            }else if ("etoile".equals(Intro.theme)) {
+                img = ImageIO.read(getClass().getResource("/speed/clicks/etoile noire.jpg"));
+                image = ImageIO.read(getClass().getResource("/speed/clicks/etoile rouge.jpg"));
+            }
         } catch (IOException ex) {
             Logger.getLogger(celluleLumineuseGraphique.class.getName()).log(Level.SEVERE, null, ex);
         }
