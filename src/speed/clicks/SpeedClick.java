@@ -50,7 +50,7 @@ public class SpeedClick extends javax.swing.JFrame {
     int tailleGrille =0;
     private static final int CONFIRME_NUM_BUTTONS = 4;
     Intro iInstance;
-    Intro intro;
+    
     Clip musique;
     
     List<Integer> boutonsAllumes;
@@ -98,7 +98,7 @@ infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
         PanelGrille = new JPanel();
         infoPanel.add(PanelGrille, BorderLayout.CENTER);
         
-         playMusic();
+         /*playMusic();
 
         // Ajouter un WindowListener pour arrêter la musique lorsque le JFrame est fermé
         addWindowListener(new WindowAdapter() {
@@ -106,7 +106,7 @@ infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
             public void windowClosing(WindowEvent e) {
                 stopMusic();
             }
-        });
+        });*/
       
         chrono= new Timer(1000, new ActionListener(){
             @Override
@@ -135,7 +135,7 @@ setVisible(true);
         for (int i = 0; i < taille; i++) {
             for (int j = 0; j < taille; j++) {
                
-                boutons[i][j] = new celluleLumineuseGraphique(intro);
+                boutons[i][j] = new celluleLumineuseGraphique();
                 boutons[i][j].statut=false;
                 boutons[i][j].addActionListener(new ButtonClickListener());
                  boutons[i][j].repaint(); 
@@ -150,7 +150,7 @@ setVisible(true);
     } 
                
    
-      private void playMusic() {
+     /* private void playMusic() {
         try {
             File file = new File("/speed/clicks/mercuryCity.mp3"); 
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
@@ -166,7 +166,7 @@ setVisible(true);
         if (musique != null && musique.isRunning()) {
             musique.stop();
         }
-    }
+    }*/
     private class ButtonClickListener implements ActionListener {
        @Override
     public void actionPerformed(ActionEvent e) {
