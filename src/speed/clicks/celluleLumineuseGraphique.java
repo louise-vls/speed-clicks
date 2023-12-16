@@ -32,11 +32,11 @@ public class celluleLumineuseGraphique extends JButton {
             
             // Vérifier les conditions et charger les images spécifiques
             if ("noel".equals(Intro.theme)) {
-                img = ImageIO.read(getClass().getResource("/speed/clicks/backgroundNoel.png"));
-                image = ImageIO.read(getClass().getResource("/speed/clicks/gifts.png"));
+                img = ImageIO.read(getClass().getResource("/speed/clicks/rennedenoel.jpg"));
+                image = ImageIO.read(getClass().getResource("/speed/clicks/cadeaux.jpg"));
             } else if ("pirate".equals(Intro.theme)) {
-                img = ImageIO.read(getClass().getResource("/speed/clicks/mer.jpg"));
-                image = ImageIO.read(getClass().getResource("/speed/clicks/pirate.jpg"));
+                img = ImageIO.read(getClass().getResource("/speed/clicks/bateau.jpg"));
+                image = ImageIO.read(getClass().getResource("/speed/clicks/pirates.jpg"));
             }else if ("etoile".equals(Intro.theme)) {
                 img = ImageIO.read(getClass().getResource("/speed/clicks/etoile noire.jpg"));
                 image = ImageIO.read(getClass().getResource("/speed/clicks/etoile rouge.jpg"));

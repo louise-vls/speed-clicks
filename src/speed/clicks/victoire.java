@@ -40,7 +40,7 @@ SpeedClick scJeu;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Eras Bold ITC", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("REVENIR AU MENU   -------->");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -48,7 +48,7 @@ SpeedClick scJeu;
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 200, 70));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, 240, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/brav.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
