@@ -98,16 +98,7 @@ infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
         PanelGrille = new JPanel();
         infoPanel.add(PanelGrille, BorderLayout.CENTER);
         
-         /*playMusic();
-
-        // Ajouter un WindowListener pour arrêter la musique lorsque le JFrame est fermé
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                stopMusic();
-            }
-        });*/
-      
+        
         chrono= new Timer(1000, new ActionListener(){
             @Override
              public void actionPerformed(ActionEvent e){
@@ -123,6 +114,8 @@ infoPanel.add(scoreEtCdPanel, BorderLayout.NORTH);
     
     
     
+        
+        
                
 startGame();
 setVisible(true);
@@ -150,23 +143,7 @@ setVisible(true);
     } 
                
    
-     /* private void playMusic() {
-        try {
-            File file = new File("/speed/clicks/mercuryCity.mp3"); 
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-            musique = AudioSystem.getClip();
-            musique.open(audioInputStream);
-            musique.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-    e.printStackTrace();
-}
-      }
-      
-         private void stopMusic() {
-        if (musique != null && musique.isRunning()) {
-            musique.stop();
-        }
-    }*/
+   
     private class ButtonClickListener implements ActionListener {
        @Override
     public void actionPerformed(ActionEvent e) {
