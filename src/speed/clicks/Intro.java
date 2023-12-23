@@ -89,6 +89,8 @@ public class Intro extends javax.swing.JFrame {
         Pirate = new javax.swing.JCheckBox();
         Start = new javax.swing.JButton();
         rdjButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,7 +190,15 @@ public class Intro extends javax.swing.JFrame {
                 rdjButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 190, 50));
+        jPanel1.add(rdjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 190, 50));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("You have to choose a mode and a level before ");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 250, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("you click on the start button");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speed/clicks/resources/Menu.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -303,7 +313,9 @@ theme= "etoile";        // TODO add your handling code here:
     private javax.swing.JButton Start;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton rdjButton;
